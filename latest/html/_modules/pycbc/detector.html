@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pycbc.detector &mdash; PyCBC 1.14.dev2 documentation</title>
+  <title>pycbc.detector &mdash; PyCBC a6e864 documentation</title>
   
 
   
@@ -60,6 +60,10 @@
 
           
             
+            
+              <div class="version">
+                1.14.1
+              </div>
             
           
 
@@ -245,6 +249,7 @@
                 <span class="n">location</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">sidereal_time</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rad</span>
     <span class="k">return</span> <span class="n">gmst</span></div>
 
+
 <div class="viewcode-block" id="get_available_detectors"><a class="viewcode-back" href="../../pycbc.html#pycbc.detector.get_available_detectors">[docs]</a><span class="k">def</span> <span class="nf">get_available_detectors</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Return list of detectors known in the currently sourced lalsuite.</span>
 
@@ -273,7 +278,7 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        detector_name: str</span>
-<span class="sd">            The two character detector string, i.e. H1, L1, V1, K1, I1</span>
+<span class="sd">            The two-character detector string, i.e. H1, L1, V1, K1, I1</span>
 <span class="sd">        reference_time: float</span>
 <span class="sd">            Default is time of GW150914. In this case, the earth&#39;s rotation</span>
 <span class="sd">        will be estimated from a reference time. If &#39;None&#39;, we will</span>
@@ -282,21 +287,30 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">detector_name</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">frDetector</span> <span class="o">=</span>  <span class="n">lalsimulation</span><span class="o">.</span><span class="n">DetectorPrefixToLALDetector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frDetector</span> <span class="o">=</span> <span class="n">lalsimulation</span><span class="o">.</span><span class="n">DetectorPrefixToLALDetector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frDetector</span><span class="o">.</span><span class="n">response</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frDetector</span><span class="o">.</span><span class="n">location</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">latitude</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frDetector</span><span class="o">.</span><span class="n">frDetector</span><span class="o">.</span><span class="n">vertexLatitudeRadians</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">longitude</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frDetector</span><span class="o">.</span><span class="n">frDetector</span><span class="o">.</span><span class="n">vertexLongitudeRadians</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">reference_time</span> <span class="o">=</span> <span class="n">reference_time</span>
-        <span class="k">if</span> <span class="n">reference_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sday</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gmst_reference</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="Detector.set_gmst_reference"><a class="viewcode-back" href="../../pycbc.html#pycbc.detector.Detector.set_gmst_reference">[docs]</a>    <span class="k">def</span> <span class="nf">set_gmst_reference</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">sday</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">sday</span><span class="o">.</span><span class="n">si</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">gmst_reference</span> <span class="o">=</span> <span class="n">gmst_accurate</span><span class="p">(</span><span class="n">reference_time</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gmst_reference</span> <span class="o">=</span> <span class="n">gmst_accurate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reference_time</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t get accurate sidereal time without GPS &quot;</span>
+                               <span class="s2">&quot;reference time!&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Detector.gmst_estimate"><a class="viewcode-back" href="../../pycbc.html#pycbc.detector.Detector.gmst_estimate">[docs]</a>    <span class="k">def</span> <span class="nf">gmst_estimate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gps_time</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_time</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">gmst_accurate</span><span class="p">(</span><span class="n">gps_time</span><span class="p">)</span>
 
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gmst_reference</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_gmst_reference</span><span class="p">()</span>
         <span class="n">dphase</span> <span class="o">=</span> <span class="p">(</span><span class="n">gps_time</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_time</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">sday</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
         <span class="n">gmst</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gmst_reference</span> <span class="o">+</span> <span class="n">dphase</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">gmst</span></div>

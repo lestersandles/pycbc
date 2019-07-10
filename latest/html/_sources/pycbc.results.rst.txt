@@ -68,6 +68,14 @@ pycbc.results.plot module
     :undoc-members:
     :show-inheritance:
 
+pycbc.results.pygrb\_plotting\_utils module
+-------------------------------------------
+
+.. automodule:: pycbc.results.pygrb_plotting_utils
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 pycbc.results.render module
 ---------------------------
 

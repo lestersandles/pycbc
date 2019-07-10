@@ -634,6 +634,95 @@ that is stored directly in the plot file. Limited format types available.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="module-pycbc.results.pygrb_plotting_utils">
+<span id="pycbc-results-pygrb-plotting-utils-module"></span><h2>pycbc.results.pygrb_plotting_utils module<a class="headerlink" href="#module-pycbc.results.pygrb_plotting_utils" title="Permalink to this headline">¶</a></h2>
+<p>Module to generate PyGRB figures: scatter plots and timeseries.</p>
+<dl class="class">
+<dt id="pycbc.results.pygrb_plotting_utils.PygrbFilterOutput">
+<em class="property">class </em><code class="descclassname">pycbc.results.pygrb_plotting_utils.</code><code class="descname">PygrbFilterOutput</code><span class="sig-paren">(</span><em>trigs_or_injs</em>, <em>ifos</em>, <em>columns</em>, <em>output_type</em>, <em>opts</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/results/pygrb_plotting_utils.html#PygrbFilterOutput"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.results.pygrb_plotting_utils.PygrbFilterOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Extract trigger/injection data produced by PyGRB search</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pycbc.results.pygrb_plotting_utils.axis_max_value">
+<code class="descclassname">pycbc.results.pygrb_plotting_utils.</code><code class="descname">axis_max_value</code><span class="sig-paren">(</span><em>trig_values</em>, <em>inj_values</em>, <em>inj_file</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/results/pygrb_plotting_utils.html#axis_max_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.results.pygrb_plotting_utils.axis_max_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deterime the maximum of a quantity in the trigger and injection data</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pycbc.results.pygrb_plotting_utils.calculate_contours">
+<code class="descclassname">pycbc.results.pygrb_plotting_utils.</code><code class="descname">calculate_contours</code><span class="sig-paren">(</span><em>trigs</em>, <em>opts</em>, <em>new_snrs=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/results/pygrb_plotting_utils.html#calculate_contours"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.results.pygrb_plotting_utils.calculate_contours" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the plot contours for chisq variable plots</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pycbc.results.pygrb_plotting_utils.contour_plotter">
+<code class="descclassname">pycbc.results.pygrb_plotting_utils.</code><code class="descname">contour_plotter</code><span class="sig-paren">(</span><em>axis</em>, <em>snr_vals</em>, <em>contours</em>, <em>colors</em>, <em>vert_spike=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/results/pygrb_plotting_utils.html#contour_plotter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.results.pygrb_plotting_utils.contour_plotter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot contours in a scatter plot where SNR is on the horizontal axis</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pycbc.results.pygrb_plotting_utils.extract_ifos">
+<code class="descclassname">pycbc.results.pygrb_plotting_utils.</code><code class="descname">extract_ifos</code><span class="sig-paren">(</span><em>trig_file</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/results/pygrb_plotting_utils.html#extract_ifos"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.results.pygrb_plotting_utils.extract_ifos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts IFOs from search summary table</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pycbc.results.pygrb_plotting_utils.extract_vetoes">
+<code class="descclassname">pycbc.results.pygrb_plotting_utils.</code><code class="descname">extract_vetoes</code><span class="sig-paren">(</span><em>veto_files</em>, <em>ifos</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/results/pygrb_plotting_utils.html#extract_vetoes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.results.pygrb_plotting_utils.extract_vetoes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts vetoes from veto filelist</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pycbc.results.pygrb_plotting_utils.format_single_chisqs">
+<code class="descclassname">pycbc.results.pygrb_plotting_utils.</code><code class="descname">format_single_chisqs</code><span class="sig-paren">(</span><em>trig_ifo_cs</em>, <em>ifos</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/results/pygrb_plotting_utils.html#format_single_chisqs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.results.pygrb_plotting_utils.format_single_chisqs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format single IFO chi-square data as numpy array and floor at 0.005</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pycbc.results.pygrb_plotting_utils.load_injections">
+<code class="descclassname">pycbc.results.pygrb_plotting_utils.</code><code class="descname">load_injections</code><span class="sig-paren">(</span><em>inj_file</em>, <em>vetoes</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/results/pygrb_plotting_utils.html#load_injections"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.results.pygrb_plotting_utils.load_injections" title="Permalink to this definition">¶</a></dt>
+<dd><p>“Loads injections from PyGRB output file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pycbc.results.pygrb_plotting_utils.load_triggers">
+<code class="descclassname">pycbc.results.pygrb_plotting_utils.</code><code class="descname">load_triggers</code><span class="sig-paren">(</span><em>trig_file</em>, <em>vetoes</em>, <em>ifos</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/results/pygrb_plotting_utils.html#load_triggers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.results.pygrb_plotting_utils.load_triggers" title="Permalink to this definition">¶</a></dt>
+<dd><p>“Loads triggers from PyGRB output file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pycbc.results.pygrb_plotting_utils.load_xml_file">
+<code class="descclassname">pycbc.results.pygrb_plotting_utils.</code><code class="descname">load_xml_file</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/results/pygrb_plotting_utils.html#load_xml_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.results.pygrb_plotting_utils.load_xml_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper to ligolw’s utils.load_filename</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pycbc.results.pygrb_plotting_utils.new_snr_chisq">
+<code class="descclassname">pycbc.results.pygrb_plotting_utils.</code><code class="descname">new_snr_chisq</code><span class="sig-paren">(</span><em>snr</em>, <em>new_snr</em>, <em>chisq_dof</em>, <em>chisq_index=4.0</em>, <em>chisq_nhigh=3.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/results/pygrb_plotting_utils.html#new_snr_chisq"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.results.pygrb_plotting_utils.new_snr_chisq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the chi-square value needed to weight SNR into new SNR</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pycbc.results.pygrb_plotting_utils.pygrb_plot_opts_parser">
+<code class="descclassname">pycbc.results.pygrb_plotting_utils.</code><code class="descname">pygrb_plot_opts_parser</code><span class="sig-paren">(</span><em>usage=''</em>, <em>description=None</em>, <em>version=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/results/pygrb_plotting_utils.html#pygrb_plot_opts_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.results.pygrb_plotting_utils.pygrb_plot_opts_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses options for PyGRB plotting scripts</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pycbc.results.pygrb_plotting_utils.pygrb_plotter">
+<code class="descclassname">pycbc.results.pygrb_plotting_utils.</code><code class="descname">pygrb_plotter</code><span class="sig-paren">(</span><em>trig_x</em>, <em>trig_y</em>, <em>inj_x</em>, <em>inj_y</em>, <em>inj_file</em>, <em>xlabel</em>, <em>ylabel</em>, <em>fig_path</em>, <em>snr_vals=None</em>, <em>conts=None</em>, <em>shade_cont_value=None</em>, <em>colors=None</em>, <em>vert_spike=False</em>, <em>xlims=None</em>, <em>ylims=None</em>, <em>use_logs=True</em>, <em>cmd=None</em>, <em>plot_title=None</em>, <em>plot_caption=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/results/pygrb_plotting_utils.html#pygrb_plotter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.results.pygrb_plotting_utils.pygrb_plotter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Master function to plot PyGRB results</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pycbc.results.pygrb_plotting_utils.reset_times">
+<code class="descclassname">pycbc.results.pygrb_plotting_utils.</code><code class="descname">reset_times</code><span class="sig-paren">(</span><em>seg_dir</em>, <em>trig_data</em>, <em>inj_data</em>, <em>inj_file</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/results/pygrb_plotting_utils.html#reset_times"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.results.pygrb_plotting_utils.reset_times" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset times so that t=0 is corresponds to the GRB trigger time</p>
+</dd></dl>
+
+</div>
 <div class="section" id="module-pycbc.results.render">
 <span id="pycbc-results-render-module"></span><h2>pycbc.results.render module<a class="headerlink" href="#module-pycbc.results.render" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
@@ -1202,7 +1291,7 @@ analysis run.</p>
     <p>
         &copy; Copyright 2015, 2016, 2017, Alexander Nitz, Ian Harry, Christopher M. Biwer, Duncan A.  Brown, Josh Willis, and Tito Dal Canton
       <span class="lastupdated">
-        Last updated on Jul 09, 2019.
+        Last updated on Jul 10, 2019.
       </span>
 
     </p>

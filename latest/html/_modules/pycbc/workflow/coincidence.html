@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pycbc.workflow.coincidence &mdash; PyCBC 70b9f3 documentation</title>
+  <title>pycbc.workflow.coincidence &mdash; PyCBC a08be4 documentation</title>
   
 
   
@@ -231,9 +231,10 @@
 <span class="sd">https://ldas-jobs.ligo.caltech.edu/~cbc/docs/pycbc/coincidence.html</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">pycbc.workflow.core</span> <span class="k">import</span> <span class="n">FileList</span><span class="p">,</span> <span class="n">make_analysis_dir</span><span class="p">,</span> <span class="n">Executable</span><span class="p">,</span> <span class="n">Node</span><span class="p">,</span> <span class="n">File</span>
 <span class="kn">from</span> <span class="nn">ligo</span> <span class="k">import</span> <span class="n">segments</span>
+<span class="kn">from</span> <span class="nn">pycbc.workflow.core</span> <span class="k">import</span> <span class="n">FileList</span><span class="p">,</span> <span class="n">make_analysis_dir</span><span class="p">,</span> <span class="n">Executable</span><span class="p">,</span> <span class="n">Node</span><span class="p">,</span> <span class="n">File</span>
 
 <div class="viewcode-block" id="PyCBCBank2HDFExecutable"><a class="viewcode-back" href="../../../pycbc.workflow.html#pycbc.workflow.coincidence.PyCBCBank2HDFExecutable">[docs]</a><span class="k">class</span> <span class="nc">PyCBCBank2HDFExecutable</span><span class="p">(</span><span class="n">Executable</span><span class="p">):</span>
 
@@ -464,11 +465,27 @@
 
 <div class="viewcode-block" id="PyCBCMultiifoCombineStatmap"><a class="viewcode-back" href="../../../pycbc.workflow.html#pycbc.workflow.coincidence.PyCBCMultiifoCombineStatmap">[docs]</a><span class="k">class</span> <span class="nc">PyCBCMultiifoCombineStatmap</span><span class="p">(</span><span class="n">Executable</span><span class="p">):</span>
     <span class="n">current_retention_level</span> <span class="o">=</span> <span class="n">Executable</span><span class="o">.</span><span class="n">MERGED_TRIGGERS</span>
-<div class="viewcode-block" id="PyCBCMultiifoCombineStatmap.create_node"><a class="viewcode-back" href="../../../pycbc.workflow.html#pycbc.workflow.coincidence.PyCBCMultiifoCombineStatmap.create_node">[docs]</a>    <span class="k">def</span> <span class="nf">create_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">statmap_files</span><span class="p">,</span> <span class="n">cluster_window</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="PyCBCMultiifoCombineStatmap.create_node"><a class="viewcode-back" href="../../../pycbc.workflow.html#pycbc.workflow.coincidence.PyCBCMultiifoCombineStatmap.create_node">[docs]</a>    <span class="k">def</span> <span class="nf">create_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">statmap_files</span><span class="p">,</span> <span class="n">cluster_window</span><span class="p">,</span>
+                    <span class="n">tags</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">tags</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">tags</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">node</span><span class="o">.</span><span class="n">add_input_list_opt</span><span class="p">(</span><span class="s1">&#39;--statmap-files&#39;</span><span class="p">,</span> <span class="n">statmap_files</span><span class="p">)</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">new_output_file_opt</span><span class="p">(</span><span class="n">statmap_files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">segment</span><span class="p">,</span> <span class="s1">&#39;.hdf&#39;</span><span class="p">,</span>
+                                 <span class="s1">&#39;--output-file&#39;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">)</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">add_opt</span><span class="p">(</span><span class="s1">&#39;--cluster-window&#39;</span><span class="p">,</span> <span class="n">cluster_window</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">node</span></div></div>
+
+<div class="viewcode-block" id="PyCBCMultiifoAddStatmap"><a class="viewcode-back" href="../../../pycbc.workflow.html#pycbc.workflow.coincidence.PyCBCMultiifoAddStatmap">[docs]</a><span class="k">class</span> <span class="nc">PyCBCMultiifoAddStatmap</span><span class="p">(</span><span class="n">Executable</span><span class="p">):</span>
+    <span class="n">current_retention_level</span> <span class="o">=</span> <span class="n">Executable</span><span class="o">.</span><span class="n">MERGED_TRIGGERS</span>
+<div class="viewcode-block" id="PyCBCMultiifoAddStatmap.create_node"><a class="viewcode-back" href="../../../pycbc.workflow.html#pycbc.workflow.coincidence.PyCBCMultiifoAddStatmap.create_node">[docs]</a>    <span class="k">def</span> <span class="nf">create_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">statmap_files</span><span class="p">,</span> <span class="n">background_files</span><span class="p">,</span> <span class="n">cluster_window</span><span class="p">,</span>
+                    <span class="n">tags</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">tags</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">tags</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">add_input_list_opt</span><span class="p">(</span><span class="s1">&#39;--statmap-files&#39;</span><span class="p">,</span> <span class="n">statmap_files</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;injections&#39;</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">:</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">add_input_list_opt</span><span class="p">(</span><span class="s1">&#39;--background-files&#39;</span><span class="p">,</span> <span class="n">background_files</span><span class="p">)</span>
         <span class="n">node</span><span class="o">.</span><span class="n">new_output_file_opt</span><span class="p">(</span><span class="n">statmap_files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">segment</span><span class="p">,</span> <span class="s1">&#39;.hdf&#39;</span><span class="p">,</span>
                                  <span class="s1">&#39;--output-file&#39;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">)</span>
         <span class="n">node</span><span class="o">.</span><span class="n">add_opt</span><span class="p">(</span><span class="s1">&#39;--cluster-window&#39;</span><span class="p">,</span> <span class="n">cluster_window</span><span class="p">)</span>
@@ -941,7 +958,8 @@
 
     <span class="k">return</span> <span class="n">pivot_ifo</span><span class="p">,</span> <span class="n">fixed_ifo</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ordered_ifo_list</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="setup_multiifo_combine_statmap"><a class="viewcode-back" href="../../../pycbc.workflow.html#pycbc.workflow.coincidence.setup_multiifo_combine_statmap">[docs]</a><span class="k">def</span> <span class="nf">setup_multiifo_combine_statmap</span><span class="p">(</span><span class="n">workflow</span><span class="p">,</span> <span class="n">final_bg_file_list</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">,</span> <span class="n">tags</span><span class="p">):</span>
+<div class="viewcode-block" id="setup_multiifo_combine_statmap"><a class="viewcode-back" href="../../../pycbc.workflow.html#pycbc.workflow.coincidence.setup_multiifo_combine_statmap">[docs]</a><span class="k">def</span> <span class="nf">setup_multiifo_combine_statmap</span><span class="p">(</span><span class="n">workflow</span><span class="p">,</span> <span class="n">final_bg_file_list</span><span class="p">,</span> <span class="n">bg_file_list</span><span class="p">,</span>
+                                   <span class="n">out_dir</span><span class="p">,</span> <span class="n">tags</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Combine the multiifo statmap files into one background file</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -950,18 +968,31 @@
     <span class="n">make_analysis_dir</span><span class="p">(</span><span class="n">out_dir</span><span class="p">)</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Setting up multiifo combine statmap&#39;</span><span class="p">)</span>
 
-    <span class="n">cstat_exe</span> <span class="o">=</span> <span class="n">PyCBCMultiifoCombineStatmap</span><span class="p">(</span><span class="n">workflow</span><span class="o">.</span><span class="n">cp</span><span class="p">,</span>
-                                            <span class="s1">&#39;combine_statmap&#39;</span><span class="p">,</span>
-                                            <span class="n">ifos</span><span class="o">=</span><span class="n">workflow</span><span class="o">.</span><span class="n">ifos</span><span class="p">,</span>
-                                            <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">,</span>
-                                            <span class="n">out_dir</span><span class="o">=</span><span class="n">out_dir</span><span class="p">)</span>
+    <span class="n">cstat_exe_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">workflow</span><span class="o">.</span><span class="n">cp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;executables&quot;</span><span class="p">,</span>
+                                                      <span class="s2">&quot;combine_statmap&quot;</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">cstat_exe_name</span> <span class="o">==</span> <span class="s1">&#39;pycbc_multiifo_combine_statmap&#39;</span><span class="p">:</span>
+        <span class="n">cstat_class</span> <span class="o">=</span> <span class="n">PyCBCMultiifoCombineStatmap</span>
+    <span class="k">elif</span> <span class="n">cstat_exe_name</span> <span class="o">==</span> <span class="s1">&#39;pycbc_multiifo_add_statmap&#39;</span><span class="p">:</span>
+        <span class="n">cstat_class</span> <span class="o">=</span> <span class="n">PyCBCMultiifoAddStatmap</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;executable should be &#39;</span>
+            <span class="s1">&#39;pycbc_multiifo_combine_statmap or pycbc_multiifo_add_statmap&#39;</span><span class="p">)</span>
+
+    <span class="n">cstat_exe</span> <span class="o">=</span> <span class="n">cstat_class</span><span class="p">(</span><span class="n">workflow</span><span class="o">.</span><span class="n">cp</span><span class="p">,</span> <span class="s1">&#39;combine_statmap&#39;</span><span class="p">,</span> <span class="n">ifos</span><span class="o">=</span><span class="n">workflow</span><span class="o">.</span><span class="n">ifos</span><span class="p">,</span>
+                            <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">,</span> <span class="n">out_dir</span><span class="o">=</span><span class="n">out_dir</span><span class="p">)</span>
 
     <span class="n">cluster_window</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">workflow</span><span class="o">.</span><span class="n">cp</span><span class="o">.</span><span class="n">get_opt_tags</span><span class="p">(</span><span class="s1">&#39;combine_statmap&#39;</span><span class="p">,</span>
                                                     <span class="s1">&#39;cluster-window&#39;</span><span class="p">,</span>
                                                     <span class="n">tags</span><span class="p">))</span>
-    <span class="n">combine_statmap_node</span> <span class="o">=</span> <span class="n">cstat_exe</span><span class="o">.</span><span class="n">create_node</span><span class="p">(</span><span class="n">final_bg_file_list</span><span class="p">,</span>
-                                                 <span class="n">cluster_window</span><span class="p">,</span>
-                                                 <span class="n">tags</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cstat_exe_name</span> <span class="o">==</span> <span class="s1">&#39;pycbc_multiifo_combine_statmap&#39;</span><span class="p">:</span>
+        <span class="n">combine_statmap_node</span> <span class="o">=</span> <span class="n">cstat_exe</span><span class="o">.</span><span class="n">create_node</span><span class="p">(</span><span class="n">final_bg_file_list</span><span class="p">,</span>
+                                                     <span class="n">cluster_window</span><span class="p">,</span>
+                                                     <span class="n">tags</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">cstat_exe_name</span> <span class="o">==</span> <span class="s1">&#39;pycbc_multiifo_add_statmap&#39;</span><span class="p">:</span>
+        <span class="n">combine_statmap_node</span> <span class="o">=</span> <span class="n">cstat_exe</span><span class="o">.</span><span class="n">create_node</span><span class="p">(</span><span class="n">final_bg_file_list</span><span class="p">,</span>
+                                                     <span class="n">bg_file_list</span><span class="p">,</span>
+                                                     <span class="n">cluster_window</span><span class="p">,</span>
+                                                     <span class="n">tags</span><span class="p">)</span>
     <span class="n">workflow</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">combine_statmap_node</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">combine_statmap_node</span><span class="o">.</span><span class="n">output_file</span></div>
 
@@ -1047,7 +1078,7 @@
     <p>
         &copy; Copyright 2015, 2016, 2017, Alexander Nitz, Ian Harry, Christopher M. Biwer, Duncan A.  Brown, Josh Willis, and Tito Dal Canton
       <span class="lastupdated">
-        Last updated on Jul 15, 2019.
+        Last updated on Jul 16, 2019.
       </span>
 
     </p>

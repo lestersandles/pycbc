@@ -286,6 +286,7 @@ workflows. For details about this module and its capabilities see here:
 <dt id="pycbc.workflow.coincidence.PyCBCCombineStatmap">
 <em class="property">class </em><code class="descclassname">pycbc.workflow.coincidence.</code><code class="descname">PyCBCCombineStatmap</code><span class="sig-paren">(</span><em>cp</em>, <em>name</em>, <em>universe=None</em>, <em>ifos=None</em>, <em>out_dir=None</em>, <em>tags=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/workflow/coincidence.html#PyCBCCombineStatmap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.workflow.coincidence.PyCBCCombineStatmap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycbc.workflow.core.Executable" title="pycbc.workflow.core.Executable"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycbc.workflow.core.Executable</span></code></a></p>
+<p>Combine coincs over different bins and apply trials factor</p>
 <dl class="method">
 <dt id="pycbc.workflow.coincidence.PyCBCCombineStatmap.create_node">
 <code class="descname">create_node</code><span class="sig-paren">(</span><em>statmap_files</em>, <em>tags=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/workflow/coincidence.html#PyCBCCombineStatmap.create_node"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.workflow.coincidence.PyCBCCombineStatmap.create_node" title="Permalink to this definition">¶</a></dt>
@@ -304,7 +305,7 @@ workflows. For details about this module and its capabilities see here:
 <dt id="pycbc.workflow.coincidence.PyCBCDistributeBackgroundBins">
 <em class="property">class </em><code class="descclassname">pycbc.workflow.coincidence.</code><code class="descname">PyCBCDistributeBackgroundBins</code><span class="sig-paren">(</span><em>cp</em>, <em>name</em>, <em>universe=None</em>, <em>ifos=None</em>, <em>out_dir=None</em>, <em>tags=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/workflow/coincidence.html#PyCBCDistributeBackgroundBins"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.workflow.coincidence.PyCBCDistributeBackgroundBins" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycbc.workflow.core.Executable" title="pycbc.workflow.core.Executable"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycbc.workflow.core.Executable</span></code></a></p>
-<p>Distribute coinc files amoung different background bins</p>
+<p>Distribute coinc files among different background bins</p>
 <dl class="method">
 <dt id="pycbc.workflow.coincidence.PyCBCDistributeBackgroundBins.create_node">
 <code class="descname">create_node</code><span class="sig-paren">(</span><em>coinc_files</em>, <em>bank_file</em>, <em>background_bins</em>, <em>tags=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/workflow/coincidence.html#PyCBCDistributeBackgroundBins.create_node"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.workflow.coincidence.PyCBCDistributeBackgroundBins.create_node" title="Permalink to this definition">¶</a></dt>
@@ -428,9 +429,10 @@ workflows. For details about this module and its capabilities see here:
 <dt id="pycbc.workflow.coincidence.PyCBCMultiifoAddStatmap">
 <em class="property">class </em><code class="descclassname">pycbc.workflow.coincidence.</code><code class="descname">PyCBCMultiifoAddStatmap</code><span class="sig-paren">(</span><em>cp</em>, <em>name</em>, <em>universe=None</em>, <em>ifos=None</em>, <em>out_dir=None</em>, <em>tags=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/workflow/coincidence.html#PyCBCMultiifoAddStatmap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.workflow.coincidence.PyCBCMultiifoAddStatmap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycbc.workflow.core.Executable" title="pycbc.workflow.core.Executable"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycbc.workflow.core.Executable</span></code></a></p>
+<p>Combine statmap files and add FARs over different coinc types</p>
 <dl class="method">
 <dt id="pycbc.workflow.coincidence.PyCBCMultiifoAddStatmap.create_node">
-<code class="descname">create_node</code><span class="sig-paren">(</span><em>statmap_files</em>, <em>background_files</em>, <em>cluster_window</em>, <em>tags=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/workflow/coincidence.html#PyCBCMultiifoAddStatmap.create_node"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.workflow.coincidence.PyCBCMultiifoAddStatmap.create_node" title="Permalink to this definition">¶</a></dt>
+<code class="descname">create_node</code><span class="sig-paren">(</span><em>statmap_files</em>, <em>background_files</em>, <em>tags=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/workflow/coincidence.html#PyCBCMultiifoAddStatmap.create_node"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.workflow.coincidence.PyCBCMultiifoAddStatmap.create_node" title="Permalink to this definition">¶</a></dt>
 <dd><p>Default node constructor.</p>
 <p>This is usually overridden by subclasses of Executable.</p>
 </dd></dl>
@@ -445,14 +447,8 @@ workflows. For details about this module and its capabilities see here:
 <dl class="class">
 <dt id="pycbc.workflow.coincidence.PyCBCMultiifoCombineStatmap">
 <em class="property">class </em><code class="descclassname">pycbc.workflow.coincidence.</code><code class="descname">PyCBCMultiifoCombineStatmap</code><span class="sig-paren">(</span><em>cp</em>, <em>name</em>, <em>universe=None</em>, <em>ifos=None</em>, <em>out_dir=None</em>, <em>tags=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/workflow/coincidence.html#PyCBCMultiifoCombineStatmap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.workflow.coincidence.PyCBCMultiifoCombineStatmap" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pycbc.workflow.core.Executable" title="pycbc.workflow.core.Executable"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycbc.workflow.core.Executable</span></code></a></p>
-<dl class="method">
-<dt id="pycbc.workflow.coincidence.PyCBCMultiifoCombineStatmap.create_node">
-<code class="descname">create_node</code><span class="sig-paren">(</span><em>statmap_files</em>, <em>cluster_window</em>, <em>tags=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/workflow/coincidence.html#PyCBCMultiifoCombineStatmap.create_node"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.workflow.coincidence.PyCBCMultiifoCombineStatmap.create_node" title="Permalink to this definition">¶</a></dt>
-<dd><p>Default node constructor.</p>
-<p>This is usually overridden by subclasses of Executable.</p>
-</dd></dl>
-
+<dd><p>Bases: <a class="reference internal" href="#pycbc.workflow.coincidence.PyCBCCombineStatmap" title="pycbc.workflow.coincidence.PyCBCCombineStatmap"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycbc.workflow.coincidence.PyCBCCombineStatmap</span></code></a></p>
+<p>Combine coincs over different coinc types and apply trials factor</p>
 <dl class="attribute">
 <dt id="pycbc.workflow.coincidence.PyCBCMultiifoCombineStatmap.current_retention_level">
 <code class="descname">current_retention_level</code><em class="property"> = 3</em><a class="headerlink" href="#pycbc.workflow.coincidence.PyCBCMultiifoCombineStatmap.current_retention_level" title="Permalink to this definition">¶</a></dt>
@@ -521,7 +517,7 @@ workflows. For details about this module and its capabilities see here:
 <dt id="pycbc.workflow.coincidence.PyCBCStatMapInjExecutable">
 <em class="property">class </em><code class="descclassname">pycbc.workflow.coincidence.</code><code class="descname">PyCBCStatMapInjExecutable</code><span class="sig-paren">(</span><em>cp</em>, <em>name</em>, <em>universe=None</em>, <em>ifos=None</em>, <em>out_dir=None</em>, <em>tags=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/workflow/coincidence.html#PyCBCStatMapInjExecutable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.workflow.coincidence.PyCBCStatMapInjExecutable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pycbc.workflow.core.Executable" title="pycbc.workflow.core.Executable"><code class="xref py py-class docutils literal notranslate"><span class="pre">pycbc.workflow.core.Executable</span></code></a></p>
-<p>Calculate FAP, IFAR, etc</p>
+<p>Calculate FAP, IFAR, etc for injections</p>
 <dl class="method">
 <dt id="pycbc.workflow.coincidence.PyCBCStatMapInjExecutable.create_node">
 <code class="descname">create_node</code><span class="sig-paren">(</span><em>zerolag</em>, <em>full_data</em>, <em>injfull</em>, <em>fullinj</em>, <em>tags=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycbc/workflow/coincidence.html#PyCBCStatMapInjExecutable.create_node"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycbc.workflow.coincidence.PyCBCStatMapInjExecutable.create_node" title="Permalink to this definition">¶</a></dt>

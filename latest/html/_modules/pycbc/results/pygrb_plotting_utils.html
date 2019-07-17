@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pycbc.results.pygrb_plotting_utils &mdash; PyCBC 188edd documentation</title>
+  <title>pycbc.results.pygrb_plotting_utils &mdash; PyCBC b19eaa documentation</title>
   
 
   
@@ -239,16 +239,14 @@
     <span class="kn">from</span> <span class="nn">glue</span> <span class="k">import</span> <span class="n">segments</span>
     <span class="kn">from</span> <span class="nn">glue.ligolw</span> <span class="k">import</span> <span class="n">utils</span><span class="p">,</span> <span class="n">lsctables</span><span class="p">,</span> <span class="n">ligolw</span><span class="p">,</span> <span class="n">table</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="n">MSG</span> <span class="o">=</span> <span class="s2">&quot;Fix when tests on top of the O2 PyGRB installation are finished.&quot;</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">MSG</span><span class="p">)</span>
+    <span class="k">pass</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">pylal</span> <span class="k">import</span> <span class="n">MultiInspiralUtils</span>
     <span class="kn">from</span> <span class="nn">pylal.coh_PTF_pyutils</span> <span class="k">import</span> <span class="n">get_bestnr</span><span class="p">,</span> <span class="n">get_det_response</span>
     <span class="kn">from</span> <span class="nn">pylal.coh_PTF_pyutils</span> <span class="k">import</span> <span class="n">readSegFiles</span>
     <span class="kn">from</span> <span class="nn">pylal.dq</span> <span class="k">import</span> <span class="n">dqSegmentUtils</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="n">MSG</span> <span class="o">=</span> <span class="s2">&quot;Running the PyGRB post-processing requires a pylal installation&quot;</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">MSG</span><span class="p">)</span>
+    <span class="k">pass</span>
 <span class="c1"># Only if a backend is not already set ... This should really *not* be done</span>
 <span class="c1"># here, but in the executables you should set matplotlib.use()</span>
 <span class="c1"># This matches the check that matplotlib does internally, but this *may* be</span>
@@ -259,11 +257,6 @@
     <span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;agg&#39;</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">rc</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-
-<span class="c1"># Get rcParams</span>
-<span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">spring</span><span class="o">.</span><span class="n">set_over</span><span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
 
 
 <span class="c1"># =============================================================================</span>
@@ -796,7 +789,20 @@
 
 
 <span class="c1"># =============================================================================</span>
-<span class="c1"># Master plotting fucntion: fits all plotting needs in for PyGRB results</span>
+<span class="c1"># Contains plotting setups shared by PyGRB plots</span>
+<span class="c1"># =============================================================================</span>
+
+<div class="viewcode-block" id="pygrb_shared_plot_setups"><a class="viewcode-back" href="../../../pycbc.results.html#pycbc.results.pygrb_plotting_utils.pygrb_shared_plot_setups">[docs]</a><span class="k">def</span> <span class="nf">pygrb_shared_plot_setups</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Master function to plot PyGRB results&quot;&quot;&quot;</span>
+
+    <span class="c1"># Get rcParams</span>
+    <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="c1"># Set color for out-of-range values</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">spring</span><span class="o">.</span><span class="n">set_over</span><span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">)</span></div>
+
+
+<span class="c1"># =============================================================================</span>
+<span class="c1"># Master plotting function: fits all plotting needs in for PyGRB results</span>
 <span class="c1"># =============================================================================</span>
 
 <div class="viewcode-block" id="pygrb_plotter"><a class="viewcode-back" href="../../../pycbc.results.html#pycbc.results.pygrb_plotting_utils.pygrb_plotter">[docs]</a><span class="k">def</span> <span class="nf">pygrb_plotter</span><span class="p">(</span><span class="n">trig_x</span><span class="p">,</span> <span class="n">trig_y</span><span class="p">,</span> <span class="n">inj_x</span><span class="p">,</span> <span class="n">inj_y</span><span class="p">,</span> <span class="n">inj_file</span><span class="p">,</span> <span class="n">xlabel</span><span class="p">,</span> <span class="n">ylabel</span><span class="p">,</span>

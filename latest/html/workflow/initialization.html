@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Pycbc’s workflow module configuration file(s) and command line interface &mdash; PyCBC 1.14.dev2 documentation</title>
+  <title>Pycbc’s workflow module configuration file(s) and command line interface &mdash; PyCBC 7606c4 documentation</title>
   
 
   
@@ -62,6 +62,10 @@
 
           
             
+            
+              <div class="version">
+                1.14.1
+              </div>
             
           
 
@@ -407,9 +411,9 @@ thinca            = ${which:ligolw_thinca}
 <div class="section" id="executable-options">
 <h2>Executable options<a class="headerlink" href="#executable-options" title="Permalink to this headline">¶</a></h2>
 <p>For each of the executables in the [executables] section, options for that executable should be listed under the section corresponding to that executable. Options in the [tmpltbank] section are sent to lalapps_tmpltbank, options in the [inspiral] section are sent to lalapps_inspiral etc.</p>
-<p>It is possible to have more than one [tmpltbank] section, ConfigParser will simply combine them together when reading in. Therefore ‘’‘important options’‘’ and ‘’‘options that a novice user might want to change’‘’ could be supplied in a first [tmpltbank] section near the top of the .ini file. This section could be commented accordingly. The modules documentation page should also include instructions for each of the supported executables (usually the code’s own help message). Options that are not so important and ones that a novice user would not want to change could be placed in a second [tmpltbank] section at the bottom of the ini file, this section would be labelled accordingly and also contain a link to documentation for that executable.</p>
+<p>It is possible to have more than one [tmpltbank] section, ConfigParser will simply combine them together when reading in. Therefore ‘’’important options’’’ and ‘’’options that a novice user might want to change’’’ could be supplied in a first [tmpltbank] section near the top of the .ini file. This section could be commented accordingly. The modules documentation page should also include instructions for each of the supported executables (usually the code’s own help message). Options that are not so important and ones that a novice user would not want to change could be placed in a second [tmpltbank] section at the bottom of the ini file, this section would be labelled accordingly and also contain a link to documentation for that executable.</p>
 <p>Some options are only sent to a subset of jobs using a given executable. For example those running on H1 data. Options like these will be provided in sections labelled [executable_name-subset_tag]. So for the H1 example the section would be called [tmpltbank-H1]. As well as obeying the rules above these section must clearly state ‘’which’’ jobs will be sent those options. This can also be used when calling a section multiple times with different tags. Nested tags are not supported (ie [tmpltbank-H1-pycbc])</p>
-<p>Some options need to be sent to more than one executable, for example the channel names are used by any code that reads the data. Such sections should be given as the combination of executable names separated by the &amp; token. So options sent to tmpltbank ‘’‘and’‘’ inspiral would go in a section called [tmpltbank&amp;inspiral]. The code parsing the .ini file will automatically separate and duplicate these options in memory. All of the above rules apply. If I want to send an option to all tmpltbank and inspiral jobs running on H1 data, I might do something like [tmpltbank-H1&amp;inspiral-H1].</p>
+<p>Some options need to be sent to more than one executable, for example the channel names are used by any code that reads the data. Such sections should be given as the combination of executable names separated by the &amp; token. So options sent to tmpltbank ‘’’and’’’ inspiral would go in a section called [tmpltbank&amp;inspiral]. The code parsing the .ini file will automatically separate and duplicate these options in memory. All of the above rules apply. If I want to send an option to all tmpltbank and inspiral jobs running on H1 data, I might do something like [tmpltbank-H1&amp;inspiral-H1].</p>
 <p>If an option is given in more than one section (ie. if I specify –time-window 0.5 in [inspiral] and –time-window 1.0 in another [inspiral] or [inspiral&amp;tmpltbank] or [inspiral-H1] the code will throw an error. Specifying –time-window 1.0 in [inspiral-H1] and –time-window 0.5 in [inspiral-L1] is valid as long as the subset of H1 jobs and the subset of L1 jobs do not overlap.</p>
 <p>If a particular code (let’s say inspiral) wants to use an option supplied in the [workflow] section (for e.g. the channel names) it can do this by using:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[inspiral-h1]
@@ -940,7 +944,7 @@ that file.</p>
     <p>
         &copy; Copyright 2015, 2016, 2017, Alexander Nitz, Ian Harry, Christopher M. Biwer, Duncan A.  Brown, Josh Willis, and Tito Dal Canton
       <span class="lastupdated">
-        Last updated on Jul 19, 2019.
+        Last updated on Jul 22, 2019.
       </span>
 
     </p>

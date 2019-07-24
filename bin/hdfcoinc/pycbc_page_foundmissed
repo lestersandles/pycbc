@@ -11,7 +11,7 @@ parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--injection-file',
                     help="The hdf injection file to plot", required=True)
 parser.add_argument('--axis-type', default='mchirp', choices=['mchirp',
-                    'effective_spin', 'time', 'mtotal', 'mass_ratio'])
+                    'effective_spin1', 'time', 'mtotal', 'mass_ratio'])
 parser.add_argument('--log-x', action='store_true', default=False)
 parser.add_argument('--distance-type', default='decisive_optimal_snr',
                     choices=['decisive_distance', 'dec_chirp_distance',
@@ -61,7 +61,7 @@ m1, m2 = f['injections/mass1'][:], f['injections/mass2'][:]
 vals = {}
 vals['mchirp'], eta = pycbc.pnutils.mass1_mass2_to_mchirp_eta(m1, m2)
 # GRRR should use pnutils formula
-vals['effective_spin'] = (m1 * s1z + m2 * s2z) / (m1 + m2)
+vals['effective_spin1'] = (m1 * s1z + m2 * s2z) / (m1 + m2)
 vals['time'] = time
 vals['mtotal'] = m1 + m2
 # use convention that q>1
@@ -130,7 +130,7 @@ labels={'mchirp': 'Chirp Mass',
         'decisive_optimal_snr': 'Decisive Optimal SNR',
         'redshift': 'Redshift',
         'time': 'Time (s)',
-        'effective_spin': 'Weighted Aligned Spin',
+        'effective_spin1': 'Weighted Aligned Spin',
        }
 
 if args.missed_on_top:
